@@ -1,57 +1,38 @@
-version: "3.8"
-
+version: "3"
 services:
   web:
-    build:
-      context: .
-      dockerfile: Dockerfile
-    container_name: softwaretasktracker_web
-    command: >
-      sh -c "./taskcafe web --migrate --config /root/config.yml"
+    image: taskcafe/taskcafe:latest
+    # build: .
     ports:
       - "3333:3333"
     depends_on:
       - postgres
-      - redis
+    networks:
+      - taskcafe-test
     environment:
       TASKCAFE_DATABASE_HOST: postgres
-      TASKCAFE_DATABASE_USER: taskcafe
-      TASKCAFE_DATABASE_PASSWORD: taskcafe_test
-      TASKCAFE_DATABASE_NAME: taskcafe
       TASKCAFE_MIGRATE: "true"
-      TASKCAFE_REDIS_HOST: redis
-      TASKCAFE_REDIS_PORT: 6379
     volumes:
       - taskcafe-uploads:/root/uploads
-      - ./config.yml:/root/config.yml:ro
-    networks:
-      - taskcafe-net
-    restart: always
-
+      
   postgres:
     image: postgres:12.3-alpine
-    container_name: softwaretasktracker_postgres
     restart: always
+    networks:
+      - taskcafe-test
     environment:
       POSTGRES_USER: taskcafe
       POSTGRES_PASSWORD: taskcafe_test
       POSTGRES_DB: taskcafe
     volumes:
       - taskcafe-postgres:/var/lib/postgresql/data
-    networks:
-      - taskcafe-net
-
-  redis:
-    image: redis:alpine
-    container_name: softwaretasktracker_redis
-    restart: always
-    networks:
-      - taskcafe-net
 
 volumes:
   taskcafe-postgres:
+    external: false
   taskcafe-uploads:
+    external: false
 
 networks:
-  taskcafe-net:
+  taskcafe-test:
     driver: bridge
