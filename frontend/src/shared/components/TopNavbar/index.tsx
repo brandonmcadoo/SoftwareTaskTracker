@@ -232,8 +232,17 @@ const NavBar: React.FC<NavBarProps> = ({
       <NavbarHeader>
         <ProjectActions>
           <ProjectSwitch ref={$finder} onClick={(e) => onOpenProjectFinder($finder)}>
-            <ProjectSwitchInner>
-              <TaskcafeLogo innerColor="#9f46e4" outerColor="#000" width={32} height={32} />
+            <ProjectSwitchInner onClick={onDashboardClick}>
+              <img
+                src="/white-logo.png"
+                alt="Integra Energy"
+                style={{
+                  height: '64px',
+                  width: 'auto',
+                  cursor: 'pointer',
+                  borderRadius: '4px',
+                }}
+              />
             </ProjectSwitchInner>
           </ProjectSwitch>
           <ProjectInfo>
@@ -270,7 +279,7 @@ const NavBar: React.FC<NavBarProps> = ({
           </ProjectInfo>
         </ProjectActions>
         <LogoContainer to="/">
-          <TaskcafeTitle>Taskcafé</TaskcafeTitle>
+          <TaskcafeTitle></TaskcafeTitle>
         </LogoContainer>
         <GlobalActions>
           {projectMembers && projectInvitedMembers && onMemberProfile && onInvitedMemberProfile && (
@@ -330,17 +339,6 @@ const NavBar: React.FC<NavBarProps> = ({
           <NavbarLink to="/tasks">
             <CheckCircle width={20} height={20} />
           </NavbarLink>
-          <IconContainer disabled onClick={NOOP}>
-            <ListUnordered width={20} height={20} />
-          </IconContainer>
-          <IconContainer onClick={onNotificationClick}>
-            <Bell width={20} height={20} />
-            {hasUnread && <NotificationCount />}
-          </IconContainer>
-          <IconContainer disabled onClick={NOOP}>
-            <BarChart width={20} height={20} />
-          </IconContainer>
-
           {user && (
             <IconContainer>
               <ProfileIcon user={user} size={30} onProfileClick={handleProfileClick} />

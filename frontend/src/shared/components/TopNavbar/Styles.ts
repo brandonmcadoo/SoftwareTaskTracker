@@ -50,7 +50,7 @@ export const ProjectInfo = styled.div`
 export const ProjectSwitchInner = styled.div`
   border-radius: 12px;
   height: 48px;
-  width: 48px;
+  width: 208px;
   box-shadow: inset 0 -2px rgba(0, 0, 0, 0.05);
   align-items: center;
   background: #cbd4db;
