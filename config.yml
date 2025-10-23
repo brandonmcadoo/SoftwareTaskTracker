@@ -1,0 +1,16 @@
+server:
+  host: 0.0.0.0
+  port: 3333
+  secret: changeme123
+
+database:
+  host: postgres
+  port: 5432
+  user: taskcafe
+  password: taskcafe_test
+  name: taskcafe
+  sslmode: disable
+
+redis:
+  host: redis
+  port: 6379
