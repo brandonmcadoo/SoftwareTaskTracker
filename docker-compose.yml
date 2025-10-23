@@ -44,4 +44,5 @@ volumes:
   taskcafe-uploads:
 
 networks:
-  taskcafe
+  taskcafe-net:
+    driver: bridge
