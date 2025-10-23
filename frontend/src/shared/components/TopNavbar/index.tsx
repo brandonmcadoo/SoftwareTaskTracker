@@ -279,7 +279,7 @@ const NavBar: React.FC<NavBarProps> = ({
           </ProjectInfo>
         </ProjectActions>
         <LogoContainer to="/">
-          <TaskcafeTitle></TaskcafeTitle>
+          <TaskcafeTitle />
         </LogoContainer>
         <GlobalActions>
           {projectMembers && projectInvitedMembers && onMemberProfile && onInvitedMemberProfile && (
